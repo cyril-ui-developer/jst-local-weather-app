@@ -5,12 +5,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { AppComponent } from './app.component';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { WeatherService } from './weather/weather.service';
+import { MaterialModule } from './material.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule, HttpClientTestingModule
+        RouterTestingModule, HttpClientTestingModule, MaterialModule
       ],
       declarations: [
         AppComponent, CurrentWeatherComponent
@@ -35,6 +36,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('JST Local Weather');
+    expect(compiled.querySelector('span').textContent).toContain('JST Local Weather');
   });
 });
