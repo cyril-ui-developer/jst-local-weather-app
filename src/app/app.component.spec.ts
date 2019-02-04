@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { WeatherService } from './weather/weather.service';
 import { MaterialModule } from './material.module';
+import { CitySearchComponent } from './city-search/city-search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WeatherServiceFake } from './weather/weather.service.fake';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule, HttpClientTestingModule, MaterialModule
+        RouterTestingModule, HttpClientTestingModule, MaterialModule, FormsModule, ReactiveFormsModule, NoopAnimationsModule
       ],
       declarations: [
-        AppComponent, CurrentWeatherComponent
+        AppComponent, CurrentWeatherComponent, CitySearchComponent
       ],
-      providers: [ WeatherService ],
+      providers: [ { provide: WeatherService, useClass: WeatherServiceFake } ],
     }).compileComponents();
   }));
 
@@ -32,7 +36,7 @@ describe('AppComponent', () => {
   //   expect(app.title).toEqual('jst-local-weather-app');
   // });
 
-  it('should render title in a h1 tag', () => {
+  it('sshould render title in a span tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
