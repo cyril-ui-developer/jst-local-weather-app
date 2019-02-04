@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ICurrentWeather } from '../interfaces';
 import { WeatherService } from '../weather/weather.service';
 
@@ -8,7 +8,8 @@ import { WeatherService } from '../weather/weather.service';
   styleUrls: ['./current-weather.component.scss']
 })
 export class CurrentWeatherComponent implements OnInit {
-  current: ICurrentWeather;
+
+  @Input() current: ICurrentWeather;
 
   constructor(private weatherService: WeatherService) {
     this.current = {
@@ -30,6 +31,6 @@ export class CurrentWeatherComponent implements OnInit {
     const n = new Date(date).getDate();
     return n > 0
       ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10]
-      : ''
+      : '';
   }
 }
